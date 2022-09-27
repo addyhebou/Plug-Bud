@@ -46,10 +46,6 @@ function App() {
     setArtistID(e.target.value);
   };
 
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-
   const sortArtistsByFollowers = (artists) => {
     return artists
       ? artists.sort((a, b) => a.followers.total - b.followers.total)
