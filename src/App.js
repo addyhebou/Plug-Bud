@@ -1,7 +1,9 @@
-import './App.css';
+import './App.scss';
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 import { Credentials } from './Credentials';
+import Header from './components/Header.js';
+import MainBanner from './components/MainBanner.js';
 
 function App() {
   const spotify = Credentials();
@@ -40,6 +42,7 @@ function App() {
 
   const updateArtistID = (e) => {
     e.preventDefault();
+    console.log(e);
     setArtistID(e.target.value);
   };
 
@@ -71,42 +74,17 @@ function App() {
   };
 
   return (
-    // <form onSubmit={searchArtist}>
     <div className="container">
-      <h1>Submit Artist ID Here</h1>
-      <input type="text" onChange={updateArtistID} />
+      <Header />
+      <MainBanner
+        title={'Find similar artists to connect with!'}
+        subtitle={'Input an artist’s Spotify ID below to find similar artists'}
+        textInput={'Spotify Artist ID'}
+        onChange={updateArtistID}
+        queryArtist={queryArtist}
+      />
       <br />
-      {queryArtist ? (
-        <div>
-          <p>Artist Name: {queryArtist.name}</p>
-          <img
-            src={queryArtist.images[1].url}
-            width={queryArtist.images[1].width}
-            height={queryArtist.images[1].height}
-          />
-          <a
-            href={queryArtist.external_urls.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Link
-          </a>
-          <p>Popularity: {queryArtist.popularity}</p>
-          <p>Followers: {numberWithCommas(queryArtist.followers.total)}</p>
-          {queryArtist.genres.length > 0 && (
-            <p>
-              Genres:{' '}
-              {queryArtist.genres.map((genre) => (
-                <li>{genre}</li>
-              ))}
-            </p>
-          )}
-        </div>
-      ) : (
-        <></>
-      )}
       <h1>Similar Artists to {queryArtist.name}</h1>
-      {/* <fieldset> */}
       <legend>Sort By:</legend>
       <div>
         <input
@@ -142,7 +120,6 @@ function App() {
         />
         <label for="Popularity">Popularity</label>
       </div>
-      {/* </fieldset> */}
       {sortDirectory(artists?.artists).map((artist) => {
         return (
           <div>
