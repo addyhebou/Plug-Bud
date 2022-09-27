@@ -24,17 +24,14 @@ export default function Artist(props) {
           {name}
         </a>
       </div>
-      <a href={spotifyLink} target="_blank" rel="noopener noreferrer">
-        Link
-      </a>
       <p>Popularity: {popularity}</p>
       <p>Followers: {followers}</p>
       {genres?.length > 0 && (
-        <p>
-          Genres:{' '}
-          {genres.map((genre) => (
+        <p className="genres">
+          Genres: {genres.join(', ')}
+          {/* {genres.map((genre) => (
             <li>{genre}</li>
-          ))}
+          ))} */}
         </p>
       )}
     </div>

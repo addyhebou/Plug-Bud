@@ -1,0 +1,20 @@
+.artistPanel {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  //   flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  overflow-y: scroll;
+
+  width: 1418px;
+  height: 187px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}

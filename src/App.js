@@ -4,6 +4,7 @@ import { React, useState, useEffect } from 'react';
 import { Credentials } from './Credentials';
 import Header from './components/Header.js';
 import MainBanner from './components/MainBanner.js';
+import SimilarArtists from './components/SimilarArtists';
 
 function App() {
   const spotify = Credentials();
@@ -42,7 +43,6 @@ function App() {
 
   const updateArtistID = (e) => {
     e.preventDefault();
-    console.log(e);
     setArtistID(e.target.value);
   };
 
@@ -60,6 +60,7 @@ function App() {
   };
 
   const sortDirectory = (artists) => {
+    artists = artists?.artists;
     if (selectedSortOption === 'Popularity')
       return sortArtistsByPopularity(artists);
     else if (selectedSortOption === 'Followers')
@@ -73,6 +74,8 @@ function App() {
     console.log(selectedSortOption);
   };
 
+  const sortOptions = ['Relevance', 'Followers', 'Popularity'];
+
   return (
     <div className="container">
       <Header />
@@ -84,73 +87,14 @@ function App() {
         queryArtist={queryArtist}
       />
       <br />
-      <h1>Similar Artists to {queryArtist.name}</h1>
-      <legend>Sort By:</legend>
-      <div>
-        <input
-          type="radio"
-          id="Relevance"
-          name="drone"
-          value="Relevance"
-          checked={selectedSortOption === 'Relevance'}
-          onClick={setSort}
-        />
-        <label for="Relevance">Relevance</label>
-      </div>
-
-      <div>
-        <input
-          type="radio"
-          id="Followers"
-          name="drone"
-          value="Followers"
-          checked={selectedSortOption === 'Followers'}
-          onClick={setSort}
-        />
-        <label for="Followers">Followers</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          id="Popularity"
-          name="drone"
-          value="Popularity"
-          onClick={setSort}
-          checked={selectedSortOption === 'Popularity'}
-        />
-        <label for="Popularity">Popularity</label>
-      </div>
-      {sortDirectory(artists?.artists).map((artist) => {
-        return (
-          <div>
-            <p>Artist Name: {artist.name}</p>
-            <img
-              src={artist.images[2].url}
-              width={artist.images[2].width}
-              height={artist.images[2].height}
-            />
-            <a
-              href={artist.external_urls.spotify}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Link
-            </a>
-            <p>Popularity: {artist.popularity}</p>
-            <p>Followers: {numberWithCommas(artist.followers.total)}</p>
-            {artist.genres.length > 0 && (
-              <p>
-                Genres:{' '}
-                {artist.genres.map((genre) => (
-                  <li>{genre}</li>
-                ))}
-              </p>
-            )}
-          </div>
-        );
-      })}
+      <SimilarArtists
+        queryArtist={queryArtist}
+        selectedSortOption={selectedSortOption}
+        onChange={setSort}
+        artists={sortDirectory(artists)}
+        sortOptions={sortOptions}
+      />
     </div>
-    // </form>
   );
 }
 

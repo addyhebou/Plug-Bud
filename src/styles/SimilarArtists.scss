@@ -1,0 +1,23 @@
+.similarArtists {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 109px 109px 72px;
+  gap: 10px;
+
+  // width: 1512px;
+
+  background: #d092ff;
+
+  h1 {
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height */
+
+    color: #ffffff;
+  }
+}

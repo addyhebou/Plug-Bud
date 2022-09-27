@@ -13,3 +13,26 @@ export const TextField = ({ textInput, onChange }) => {
     </>
   );
 };
+
+export const SingleChoiceField = ({ selectedOption, onChange, options }) => {
+  return (
+    <div>
+      <legend>Sort By:</legend>
+      {options.map((option) => {
+        return (
+          <div>
+            <input
+              type="radio"
+              id={option}
+              name="drone"
+              value={option}
+              checked={selectedOption === option}
+              onClick={onChange}
+            />
+            <label for={option}>{option}</label>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
