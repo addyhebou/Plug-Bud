@@ -16,7 +16,7 @@ export const TextField = ({ textInput, onChange }) => {
 
 export const SingleChoiceField = ({ selectedOption, onChange, options }) => {
   return (
-    <div>
+    <div className="singleChoiceField">
       <legend>Sort By:</legend>
       {options.map((option) => {
         return (
