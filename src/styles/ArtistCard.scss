@@ -11,6 +11,9 @@
   background: #ffffff;
   border-radius: 22px;
 
+  text-decoration: none;
+  transition: all 0.125s ease-in-out;
+
   /* Inside auto layout */
 
   flex: none;
@@ -66,4 +69,8 @@
     width: 100px;
     height: 100px;
   }
+}
+
+.artistCard:hover {
+  border-top: 8px solid #a7a6a7;
 }
